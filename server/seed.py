@@ -8,10 +8,29 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db
+from models import Performer
+from config import db
 
+fake = Faker()
+
+def make_performers():
+
+    Performer.query.delete()
+
+    performers = []
+
+    for i in range(10):
+        performer = Performer(
+            name = fake.name(),
+            bio = fake.text(),
+            contact_info = fake.email()
+        )
+        performers.append(performer)
+
+    db.session.add_all(performers)
+    db.session.commit()
+    
 if __name__ == '__main__':
-    fake = Faker()
     with app.app_context():
-        print("Starting seed...")
-        # Seed code goes here!
+        make_performers()
+

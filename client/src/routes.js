@@ -1,5 +1,6 @@
 import App from "./App";
 import PerformerList from "./components/PerformerList";
+import Form from "./components/Form";
 
 const routes = [
     {
@@ -9,6 +10,10 @@ const routes = [
             {
                 path: '/',
                 element: <PerformerList />
+            },
+            {
+                path: '/manage',
+                element: <Form />
             }
         ]
     }

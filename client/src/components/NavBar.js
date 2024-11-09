@@ -6,8 +6,15 @@ function NavBar() {
         <nav>
             <NavLink 
             to='/'
+            className="nav-link"
             >
                 Home
+            </NavLink>
+            <NavLink
+            to='/manage'
+            className="nav-link"
+            >
+                Manage
             </NavLink>
         </nav>
     )

@@ -22,6 +22,7 @@ def make_performers():
     for i in range(10):
         performer = Performer(
             name = fake.name(),
+            image = fake.image_url(),
             bio = fake.text(),
             contact_info = fake.email()
         )

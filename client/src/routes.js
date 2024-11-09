@@ -1,4 +1,4 @@
-import App from "./components/App";
+import App from "./App";
 import PerformerList from "./components/PerformerList";
 
 const routes = [

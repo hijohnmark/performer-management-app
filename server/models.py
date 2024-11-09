@@ -9,6 +9,7 @@ class Performer(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
+    image = db.Column(db.String)
     bio = db.Column(db.String)
     contact_info = db.Column(db.String)
     
@@ -16,5 +17,5 @@ class Performer(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     def __repr__(self):
-        return f'Performer {self.id}: {self.name}, Bio: {self.bio}, Contact: {self.contact_info}'
+        return f'Performer {self.id}: {self.name}, Bio: {self.bio}, Contact: {self.contact_info}, Image URL: {self.image}'
     

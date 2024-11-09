@@ -8,22 +8,23 @@ function PerformerList() {
 
     return (
         <>
-        <h1>Featured Performers:</h1>
-        <ul>
-            {
-                performers.map(performer => {
-                    return (
-                        <PerformerCard
-                        key = {performer.id}
-                        name = {performer.name}
-                        bio = {performer.bio}
-                        contact_info = {performer.contact_info} />
-                    )
-                })
-            }
-
-        </ul>
-        </>
+            <h1>Featured Performers:</h1>
+                <ul>
+                    {
+                        performers.map(performer => {
+                            return (
+                                <PerformerCard 
+                                key={performer.id}
+                                name={performer.name}
+                                image={performer.image}
+                                bio={performer.bio}
+                                contact_info={performer.contact_info} />
+                            )
+                        })
+                    }
+                </ul>
+        </>   
+        
     )
 }
 

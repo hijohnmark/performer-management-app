@@ -1,6 +1,6 @@
 import App from "./App";
 import PerformerList from "./components/PerformerList";
-import Form from "./components/Form";
+import Manage from "./components/Manage";
 
 const routes = [
     {
@@ -13,7 +13,7 @@ const routes = [
             },
             {
                 path: '/manage',
-                element: <Form />
+                element: <Manage />
             }
         ]
     }

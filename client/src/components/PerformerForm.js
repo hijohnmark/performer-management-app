@@ -13,21 +13,21 @@ const PerformerForm = () => {
     const { onAddPerformer } = useOutletContext()
 
     const formSchema = yup.object().shape({
-        name: yup.string().name("Invalid name").required("Must enter a name."),
-        image: yup.string().required("Must enter an image URL."),
-        bio: yup.string().required("Must enter a performer bio.").max(250),
+        name: yup.string().required("Must enter a name.").max(25, "Name must not exceed 25 characters."),
+        image: yup.string().url("Must be a valid URL.").required("Must enter an image URL."),
+        bio: yup.string().required("Must enter a performer bio.").max(250, "Bio must not exceed 250 characters."),
         email: yup.string().email("Invalid email format.").required("Must enter a valid email address.")
     })
 
     const formik = useFormik({
-        intialValues: {
+        initialValues: {
             name: "",
             image: "",
             bio: "",
             email: "",
         },
         validationSchema: formSchema,
-        onSubmit: (values) => {
+        onSubmit: (values, { resetForm }) => {
             fetch("performers", {
                 method: "POST",
                 headers: {
@@ -36,7 +36,10 @@ const PerformerForm = () => {
                 body: JSON.stringify(values),
             })
             .then(r => r.json())
-            .then(data => onAddPerformer(data))
+            .then(data => {
+                onAddPerformer(data)
+                resetForm()
+            })
         }
     })
 
@@ -71,44 +74,60 @@ const PerformerForm = () => {
         <div className="new-performer-form">
             <h1>Add a new performer to your lineup:</h1>
             <br></br>
-            <form onSubmit={handleSubmit}>
-                
+            <form onSubmit={formik.handleSubmit} style={{ margin: "30px" }}>
+
+                <label htmlFor="name">Performer Name</label>
+                <br />
                 {/* name input */}
                 <input 
+                id="name"
                 type="text" 
                 name="name" 
                 placeholder="Add name"
-                value={name} 
-                onChange={e => setName(e.target.value)}
+                value={formik.values.name} 
+                onChange={formik.handleChange}
                 />
-                <br></br>
+                <p style={{ color: "red" }}>{formik.errors.name}</p>
+
+                <label htmlFor="image">Profile Picture</label>
+                <br />
                 {/* image input */}
                 <input
+                id="image"
                 type="text" 
                 name="image" 
                 placeholder="Add a profile picture URL"
-                value={image} 
-                onChange={e => setImage(e.target.value)}
+                value={formik.values.image} 
+                onChange={formik.handleChange}
                 />
-                <br></br>
+                <p style={{ color: "red" }}>{formik.errors.image}</p>
+                
+                <label htmlFor="bio">Bio</label>
+                <br />
                 {/* bio input */}
                 <input
+                id="bio"
                 type="text" 
                 name="bio" 
                 placeholder="Add performer bio"
-                value={bio} 
-                onChange={e => setBio(e.target.value)}
+                value={formik.values.bio} 
+                onChange={formik.handleChange}
                 />
-                <br></br>
+                <p style={{ color: "red" }}>{formik.errors.bio}</p>
+
+                <label htmlFor="email">Email</label>
+                <br />
                 {/* email input */}
                 <input
+                id="email"
                 type="text"
                 name="email"
                 placeholder="Add email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                value={formik.values.email}
+                onChange={formik.handleChange}
                 />
-                <br></br>
+                <p style={{ color: "red" }}>{formik.errors.email}</p>
+                <br />
                 <button type="submit">Submit New Performer</button>
             </form>
         </div>

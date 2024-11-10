@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PerformerCard({ name, bio, contact_info, image }) {
+function PerformerCard({ name, bio, email, image }) {
 
     return (
         <li className='card'>
@@ -16,7 +16,7 @@ function PerformerCard({ name, bio, contact_info, image }) {
             <br></br>
 
             <h3>Email:</h3>
-            <p>{contact_info}</p>
+            <p>{email}</p>
 
             <div className="button-container">
                 <button>Edit</button><button>Delete</button>

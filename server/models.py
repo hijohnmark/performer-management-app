@@ -11,11 +11,11 @@ class Performer(db.Model, SerializerMixin):
     name = db.Column(db.String)
     image = db.Column(db.String)
     bio = db.Column(db.String)
-    contact_info = db.Column(db.String)
+    email = db.Column(db.String)
     
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     def __repr__(self):
-        return f'Performer {self.id}: {self.name}, Bio: {self.bio}, Contact: {self.contact_info}, Image URL: {self.image}'
+        return f'Performer {self.id}: {self.name}, Bio: {self.bio}, Contact: {self.email}, Image URL: {self.image}'
     

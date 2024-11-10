@@ -31,7 +31,7 @@ def make_performers():
             name = fake.name(),
             image = img_url,
             bio = fake.text(),
-            contact_info = fake.email()
+            email = fake.email()
         )
         performers.append(performer)
 

@@ -20,8 +20,26 @@ class Performers(Resource):
         performers = [performer.to_dict() for performer in Performer.query.all()]
         
         return make_response(
-        jsonify(performers),
-        200
+            jsonify(performers),
+            200
+        )
+    
+    def post(self):
+        new_performer = Performer(
+            name=request.json["name"],
+            image=request.json["image"],
+            bio=request.json["bio"],
+            email=request.json["email"],
+        )
+
+        db.session.add(new_performer)
+        db.session.commit()
+
+        response_dict = new_performer.to_dict()
+
+        return make_response(
+            response_dict,
+            201
         )
 
 api.add_resource(Performers, '/performers')

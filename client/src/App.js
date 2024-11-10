@@ -26,7 +26,10 @@ const [performers, setPerformers] = useState([])
     .then(data => setPerformers(data))
   } , [])
 
-  const onAddPerformer = newPerformer => setPerformers([...performers, newPerformer])
+  const onAddPerformer = newPerformer => {
+    setPerformers([...performers, newPerformer])
+  
+  }
 
   return (
   <>

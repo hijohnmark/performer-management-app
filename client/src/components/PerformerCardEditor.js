@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useOutletContext } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
 function PerformerCardEditor({ id, name, bio, email, image }) {
-    const { onEditPerformer } = useContext()
+    const { onEditPerformer } = useOutletContext()
 
     const formSchema = yup.object({
         editedName: yup.string().required("Name is required.").max(25, "Name cannot exceed 25 characters."),
@@ -69,11 +70,12 @@ function PerformerCardEditor({ id, name, bio, email, image }) {
 
                 <label>
                     Performer Bio:
-                    <input
-                    type="text"
+                    <textarea
                     name="editedBio"
                     value={formik.values.editedBio}
                     onChange={formik.handleChange}
+                    rows="6"
+                    style={{ width: "100%", resize: "vertical" }}
                     />
                     {formik.errors.editedBio && <p style={{ color: "red" }}>{formik.errors.editedBio}</p>}
                 </label>

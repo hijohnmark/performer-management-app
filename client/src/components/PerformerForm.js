@@ -1,14 +1,32 @@
 import React, {useState} from "react"
 import PerformerList from "./PerformerList"
+import { useFormik } from "formik"
+import * as yup from "yup"
 import { useOutletContext } from "react-router-dom"
 
 const PerformerForm = () => {
-    const [ name, setName ] = useState("")
-    const [ image, setImage ] = useState("")
-    const [ bio, setBio ] = useState("")
-    const [ email, setEmail ] = useState("")
+    // const [ name, setName ] = useState("")
+    // const [ image, setImage ] = useState("")
+    // const [ bio, setBio ] = useState("")
+    // const [ email, setEmail ] = useState("")
 
-    const { onAddPerformer } = useOutletContext()
+    // const { onAddPerformer } = useOutletContext()
+
+    const formSchema = yup.object().shape({
+        name: yup.string().name("Invalid name").required("Must enter a name."),
+        image: yup.string().required("Must enter an image URL."),
+        bio: yup.string().required("Must enter a performer bio.").max(250),
+        email: yup.string().email("Invalid email format.").required("Must enter a valid email address.")
+    })
+
+    const formik = useFormik({
+        intialValues: {
+            name: "",
+            image: "",
+            bio: "",
+            email: "",
+        }
+    })
 
     const handleSubmit = e => {
         e.preventDefault()

@@ -17,7 +17,16 @@ class Performer(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     def __repr__(self):
-        return f'Performer {self.id}: {self.name}, Bio: {self.bio}, Contact: {self.email}, Image URL: {self.image}'
+        return f'<Performer {self.id}: {self.name}, Bio: {self.bio}, Contact: {self.email}, Image URL: {self.image}>'
     
-# class PerformerType(db.Model, SerializerMixin):
-#     __tablename__ = ''
+class PerformerType(db.Model, SerializerMixin):
+    __tablename__ = 'performer_types'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+
+    def __repr__(self):
+        return f'<Performer type {self.id}: {self.name}>'

@@ -8,10 +8,27 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import Performer
+from models import Performer, PerformerType
 from config import db
 
 fake = Faker()
+performer_types = []
+
+def make_performer_types():
+    
+    PerformerType.query.delete()
+
+    types = ["drag artist", "drag king", "drag queen", "musician", "magician", "dj"]
+
+    for i, type in enumerate(types):
+        performer_type = PerformerType(
+            name = type
+        )
+        performer_types.append(performer_type)
+
+    db.session.add_all(performer_types)
+    db.session.commit()
+
 
 def make_performers():
 
@@ -31,7 +48,8 @@ def make_performers():
             name = fake.name(),
             image = img_url,
             bio = fake.text(),
-            email = fake.email()
+            email = fake.email(),
+            performer_type_id = randint(1, len(PerformerType.query.all()))
         )
         performers.append(performer)
 
@@ -40,5 +58,7 @@ def make_performers():
     
 if __name__ == '__main__':
     with app.app_context():
+        make_performer_types()
         make_performers()
+
 

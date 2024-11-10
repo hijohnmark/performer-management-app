@@ -12,6 +12,7 @@ class Performer(db.Model, SerializerMixin):
     image = db.Column(db.String)
     bio = db.Column(db.String)
     email = db.Column(db.String)
+    performer_type_id = db.Column(db.Integer, db.ForeignKey('performer_types.id'))
     
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())

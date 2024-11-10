@@ -13,13 +13,18 @@ from models import Performer
 
 # Views go here!
 
-@app.route('/performers')
-def index():
-    performers = [performer.to_dict() for performer in Performer.query.all()]
-    return make_response(
+class Performers(Resource):
+
+    def get(self):
+
+        performers = [performer.to_dict() for performer in Performer.query.all()]
+        
+        return make_response(
         jsonify(performers),
         200
-    )
+        )
+
+api.add_resource(Performers, '/performers')
 
 
 if __name__ == '__main__':

@@ -43,42 +43,14 @@ const PerformerForm = () => {
         }
     })
 
-    // const handleSubmit = e => {
-    //     e.preventDefault()
-    //     const performerData = {
-    //         name: name,
-    //         image: image,
-    //         bio: bio,
-    //         contact_info: email
-    //     }
-    //     console.log(performerData)
-
-    //    fetch('/performers', {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify(performerData)
-    //    })
-    //    .then(r => r.json())
-    //    .then(newPerformer => onAddPerformer(newPerformer))
-
-    // setName("")
-    // setImage("")
-    // setBio("")
-    // setEmail("") 
-    // }
-
     return (
         <>
-        <div className="new-performer-form">
+        <div className="new-performer-form padding-container">
             <h1>Add a new performer to your lineup:</h1>
             <br></br>
             <form onSubmit={formik.handleSubmit} style={{ margin: "30px" }}>
 
-                <label htmlFor="name">Performer Name</label>
-                <br />
-                {/* name input */}
+                <label htmlFor="name">Performer Name
                 <input 
                 id="name"
                 type="text" 
@@ -86,12 +58,13 @@ const PerformerForm = () => {
                 placeholder="Add name"
                 value={formik.values.name} 
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}  // Mark field as touched when blurred
                 />
-                <p style={{ color: "red" }}>{formik.errors.name}</p>
+                {formik.touched.name && formik.errors.name && <p style={{ color: 'red' }}>{formik.errors.name}</p>}
+                </label>
+                <br/>
 
-                <label htmlFor="image">Profile Picture</label>
-                <br />
-                {/* image input */}
+                <label htmlFor="image">Profile Picture
                 <input
                 id="image"
                 type="text" 
@@ -99,12 +72,13 @@ const PerformerForm = () => {
                 placeholder="Add a profile picture URL"
                 value={formik.values.image} 
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}  // Mark field as touched when blurred
                 />
-                <p style={{ color: "red" }}>{formik.errors.image}</p>
-                
-                <label htmlFor="bio">Bio</label>
+                {formik.touched.image && formik.errors.image && <p style={{ color: 'red' }}>{formik.errors.image}</p>}
+                </label>
                 <br />
-                {/* bio input */}
+
+                <label htmlFor="bio">Bio
                 <input
                 id="bio"
                 type="text" 
@@ -112,12 +86,13 @@ const PerformerForm = () => {
                 placeholder="Add performer bio"
                 value={formik.values.bio} 
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}  // Mark field as touched when blurred
                 />
-                <p style={{ color: "red" }}>{formik.errors.bio}</p>
-
-                <label htmlFor="email">Email</label>
+                {formik.touched.bio && formik.errors.bio && <p style={{ color: 'red' }}>{formik.errors.bio}</p>}
+                </label>
                 <br />
-                {/* email input */}
+
+                <label htmlFor="email">Email
                 <input
                 id="email"
                 type="text"
@@ -125,8 +100,10 @@ const PerformerForm = () => {
                 placeholder="Add email"
                 value={formik.values.email}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}  // Mark field as touched when blurred
                 />
-                <p style={{ color: "red" }}>{formik.errors.email}</p>
+                {formik.touched.email && formik.errors.email && <p style={{ color: 'red' }}>{formik.errors.email}</p>}
+                </label>
                 <br />
                 <button type="submit">Submit New Performer</button>
             </form>

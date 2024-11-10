@@ -3,25 +3,25 @@ import { useOutletContext } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
-function PerformerCardEditor({ id, name, bio, email, image }) {
+function PerformerCardEditor({ id, name, bio, email, image, setEditMode }) {
     const { onEditPerformer } = useOutletContext()
 
     const formSchema = yup.object({
-        editedName: yup.string().required("Name is required.").max(25, "Name cannot exceed 25 characters."),
-        editedBio: yup.string().required("Bio is required.").max(250, "Bio cannot exceed 250 characters."),
-        editedEmail: yup.string().email("Invalid email format.").required("Email is required."),
-        editedImage: yup.string().url("Must be a valid URL.").required("Image URL is required.")
+        name: yup.string().required("Name is required.").max(25, "Name cannot exceed 25 characters."),
+        bio: yup.string().required("Bio is required.").max(250, "Bio cannot exceed 250 characters."),
+        email: yup.string().email("Invalid email format.").required("Email is required."),
+        image: yup.string().url("Must be a valid URL.").required("Image URL is required.")
     })
 
    const formik = useFormik({
     initialValues: {
-        editedName: name,
-        editedImage: image,
-        editedBio: bio,
-        editedEmail: email,
+        name: name,
+        image: image,
+        bio: bio,
+        email: email,
     },
     validationSchema: formSchema,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
         fetch(`performers/${id}`, {
             method: "PATCH",
             headers: {
@@ -32,7 +32,7 @@ function PerformerCardEditor({ id, name, bio, email, image }) {
         .then(r => r.json())
         .then(data => {
             onEditPerformer(data)
-            resetForm()
+            setEditMode(false)
         })
     }
 })
@@ -47,37 +47,37 @@ function PerformerCardEditor({ id, name, bio, email, image }) {
                     Name:
                     <input
                     type="text"
-                    name="editedName"
-                    value={formik.values.editedName}
+                    name="name"
+                    value={formik.values.name}
                     onChange={formik.handleChange}
                     />
-                    {formik.errors.editedName && <p style={{ color: 'red' }}>{formik.errors.editedName}</p>}
+                    {formik.errors.name && <p style={{ color: 'red' }}>{formik.errors.name}</p>}
                 </label>
                 <br />
 
                 <label>
                     Profile Picture URL:
-                    <img src={formik.values.editedImage}></img>
+                    <img src={formik.values.image}></img>
                     <input
                     type="text"
-                    name="editedImage"
-                    value={formik.values.editedImage}
+                    name="image"
+                    value={formik.values.image}
                     onChange={formik.handleChange}
                     />
-                    {formik.errors.editedImage && <p style={{ color: 'red' }}>{formik.errors.editedImage}</p>}
+                    {formik.errors.image && <p style={{ color: 'red' }}>{formik.errors.image}</p>}
                 </label>
                 <br />
 
                 <label>
                     Performer Bio:
                     <textarea
-                    name="editedBio"
-                    value={formik.values.editedBio}
+                    name="bio"
+                    value={formik.values.bio}
                     onChange={formik.handleChange}
-                    rows="6"
+                    rows="8"
                     style={{ width: "100%", resize: "vertical" }}
                     />
-                    {formik.errors.editedBio && <p style={{ color: "red" }}>{formik.errors.editedBio}</p>}
+                    {formik.errors.bio && <p style={{ color: "red" }}>{formik.errors.bio}</p>}
                 </label>
                 <br />
 
@@ -85,17 +85,17 @@ function PerformerCardEditor({ id, name, bio, email, image }) {
                     Performer Email:
                     <input
                     type="text"
-                    name="editedEmail"
-                    value={formik.values.editedEmail}
+                    name="email"
+                    value={formik.values.email}
                     onChange={formik.handleChange}
                     />
-                    {formik.errors.editedEmail && <p style={{ color: "red" }}>{formik.errors.editedEmail}</p>}
+                    {formik.errors.email && <p style={{ color: "red" }}>{formik.errors.email}</p>}
                 </label>
                 <br />
 
                 <div className='button-container'>
                     <button type='submit'>Submit</button>
-                    <button type='button'>Cancel</button>
+                    <button type='button' onClick={() => setEditMode(false)}>Cancel</button>
                 </div>
             </form>
         </li>

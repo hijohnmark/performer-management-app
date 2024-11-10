@@ -59,6 +59,22 @@ class PerformerById(Resource):
             response_dict,
             200
         )
+    
+    def patch(self, id):
+
+        performer = Performer.query.filter(Performer.id == id).first()
+        for attr in request.json:
+            setattr(performer, attr, request.json[attr])
+
+        db.session.add(performer)
+        db.session.commit()
+
+        response_dict = performer.to_dict()
+
+        return make_response(
+            response_dict,
+            200
+        )
 
 api.add_resource(PerformerById, '/performers/<int:id>')
 

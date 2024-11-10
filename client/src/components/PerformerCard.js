@@ -25,7 +25,8 @@ function PerformerCard({ id, name, bio, email, image }) {
                 name={name}
                 bio={bio}
                 email={email}
-                image={image} 
+                image={image}
+                setEditMode={setEditMode} 
             />
         ) : (
             <li className='card'>

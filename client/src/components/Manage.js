@@ -10,11 +10,11 @@ const Manage = () => {
     const handleSelectChange = e => setSelectedOption(e.target.value)
 
     return (
-        <div>
+        <div className="padding-container">
             <br></br>
             <br></br>
-                <label htmlFor="mgmt-dd">Choose what you'd like to manage: 
-                    <select name="mgmt-dd" id="mgmt-dd" value={selectedOption} onChange={handleSelectChange}>
+                <label htmlFor="mgmt-dd">Choose what you'd like to manage:
+                    <select name="mgmt-dd" id="mgmt-dd" style={{ marginLeft: "10px" }} value={selectedOption} onChange={handleSelectChange}>
                         <option value="default">Select an option</option>
                         <option value="performers">Performers</option>
                         <option value="events">Events</option>

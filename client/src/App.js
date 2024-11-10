@@ -5,20 +5,7 @@ import NavBar from "./components/NavBar";
 function App() {
   
 const [performers, setPerformers] = useState([])
-  // const performers = [
-  //   {
-  //   id: 1,
-  //   name: "rodrigo",
-  //   bio: "a handsome man.",
-  //   contact_info: "nunya" 
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "bella",
-  //     bio: "a wanderer.",
-  //     contact_info: "sheila@example.com"
-  //   }
-  // ]
+
 
   useEffect(() => {
     fetch('http://localhost:5555/performers')
@@ -34,12 +21,17 @@ const [performers, setPerformers] = useState([])
     setPerformers(performers.filter(performer => performer.id !== deletedPerformerId))
   }
 
+  const onEditPerformer = editedPerformer => {
+    setPerformers(performers.map(performer => performer.id === editedPerformer.id ? editedPerformer :  performer)
+  )}
+  
+
   return (
   <>
     <header>
       <NavBar />
     </header>
-    <Outlet context = {{ performers, onAddPerformer, onDeletePerformer }} />
+    <Outlet context = {{ performers, onAddPerformer, onDeletePerformer, onEditPerformer }} />
   </>
   )
 }

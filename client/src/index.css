@@ -98,17 +98,32 @@ label {
 
 input {
   padding: 0.25rem;
-  border: none;
+  border: solid;
+  border-radius: 5px;
   font-family: inherit;
   font-size: 1.2em;
-  border-bottom: 2px solid rgb(221, 221, 221);
-  transition: all 0.2s;
   width: 100%;
 }
 
 input:focus {
   outline: none;
-  border-bottom: 2px solid black;
+  border: 2px solid rgb(116, 106, 255);
+  box-shadow: 0 0 5px rgb(116, 106, 255);
+}
+
+textarea {
+  padding: 0.25rem;
+  border: solid;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1em;
+  width: 100%;
+}
+
+textarea:focus {
+  outline: none;
+  border: 2px solid rgb(116, 106, 255);
+  box-shadow: 0 0 5px rgb(116, 106, 255);
 }
 
 .cards {
@@ -138,6 +153,10 @@ input:focus {
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
+}
+
+.padding-container {
+  padding: 20px;
 }
 
 @media (min-width: 768px) {

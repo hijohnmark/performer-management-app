@@ -19,3 +19,5 @@ class Performer(db.Model, SerializerMixin):
     def __repr__(self):
         return f'Performer {self.id}: {self.name}, Bio: {self.bio}, Contact: {self.email}, Image URL: {self.image}'
     
+# class PerformerType(db.Model, SerializerMixin):
+#     __tablename__ = ''

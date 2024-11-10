@@ -10,7 +10,7 @@ const PerformerForm = () => {
     // const [ bio, setBio ] = useState("")
     // const [ email, setEmail ] = useState("")
 
-    // const { onAddPerformer } = useOutletContext()
+    const { onAddPerformer } = useOutletContext()
 
     const formSchema = yup.object().shape({
         name: yup.string().name("Invalid name").required("Must enter a name."),
@@ -25,18 +25,31 @@ const PerformerForm = () => {
             image: "",
             bio: "",
             email: "",
+        },
+        validationSchema: formSchema,
+        onSubmit: (values) => {
+            fetch("performers", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+            })
+            .then(r => r.json())
+            .then(data => onAddPerformer(data))
         }
     })
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        const performerData = {
-            name: name,
-            image: image,
-            bio: bio,
-            contact_info: email
-        }
-        console.log(performerData)
+    // const handleSubmit = e => {
+    //     e.preventDefault()
+    //     const performerData = {
+    //         name: name,
+    //         image: image,
+    //         bio: bio,
+    //         contact_info: email
+    //     }
+    //     console.log(performerData)
+
     //    fetch('/performers', {
     //     method: "POST",
     //     headers: {
@@ -46,11 +59,12 @@ const PerformerForm = () => {
     //    })
     //    .then(r => r.json())
     //    .then(newPerformer => onAddPerformer(newPerformer))
-    setName("")
-    setImage("")
-    setBio("")
-    setEmail("") 
-    }
+
+    // setName("")
+    // setImage("")
+    // setBio("")
+    // setEmail("") 
+    // }
 
     return (
         <>

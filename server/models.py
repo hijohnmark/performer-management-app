@@ -17,6 +17,9 @@ class Performer(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
+    type = db.relationship('PerformerType')
+    # type_name = association_proxy('type', 'name')
+    
     def __repr__(self):
         return f'<Performer {self.id}: {self.name}, Bio: {self.bio}, Contact: {self.email}, Image URL: {self.image}>'
     

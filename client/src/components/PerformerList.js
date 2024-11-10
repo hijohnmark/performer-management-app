@@ -18,7 +18,8 @@ function PerformerList() {
                                 name={performer.name}
                                 image={performer.image}
                                 bio={performer.bio}
-                                email={performer.email} />
+                                email={performer.email}
+                                performer_type={performer.type.name} />
                             )
                         })
                     }

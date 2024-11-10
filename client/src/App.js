@@ -25,6 +25,7 @@ const [performers, setPerformers] = useState([])
     setPerformers(performers.map(performer => performer.id === editedPerformer.id ? editedPerformer :  performer)
   )}
   
+  console.log(performers)
 
   return (
   <>

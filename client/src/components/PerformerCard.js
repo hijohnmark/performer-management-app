@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import PerformerCardEditor from './PerformerCardEditor'
 
-function PerformerCard({ id, name, bio, email, image }) {
+function PerformerCard({ id, name, bio, email, image, performer_type }) {
     const [ editMode, setEditMode ] = useState(false)
 
     const { onDeletePerformer } = useOutletContext()
@@ -26,20 +26,24 @@ function PerformerCard({ id, name, bio, email, image }) {
                 bio={bio}
                 email={email}
                 image={image}
+                performer_type={performer_type}
                 setEditMode={setEditMode} 
             />
         ) : (
             <li className='card'>
             <h3>{name}</h3>
-            <br></br>
+            <br />
 
             <img src={image} alt={`${name}'s profile picture`}/>
-            <br></br>
-            <br></br>
+            <br /><br />
 
             <h3>Bio:</h3>
             <p>{bio}</p>
-            <br></br>
+            <br />
+
+            <h3>Type:</h3>
+            <p>{performer_type}</p>
+            <br />
 
             <h3>Email:</h3>
             <p>{email}</p>

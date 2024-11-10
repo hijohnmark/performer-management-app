@@ -28,7 +28,10 @@ const [performers, setPerformers] = useState([])
 
   const onAddPerformer = newPerformer => {
     setPerformers([...performers, newPerformer])
-  
+  }
+
+  const onDeletePerformer = deletedPerformerId => {
+    setPerformers(performers.filter(performer => performer.id !== deletedPerformerId))
   }
 
   return (
@@ -36,7 +39,7 @@ const [performers, setPerformers] = useState([])
     <header>
       <NavBar />
     </header>
-    <Outlet context = {{ performers, onAddPerformer }} />
+    <Outlet context = {{ performers, onAddPerformer, onDeletePerformer }} />
   </>
   )
 }

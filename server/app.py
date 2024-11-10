@@ -44,6 +44,24 @@ class Performers(Resource):
 
 api.add_resource(Performers, '/performers')
 
+class PerformerById(Resource):
+
+    def delete(self, id):
+
+        performer = Performer.query.filter(Performer.id == id).first()
+
+        db.session.delete(performer)
+        db.session.commit()
+
+        response_dict = {"message": "Performer successfully deleted."}
+
+        return make_response(
+            response_dict,
+            200
+        )
+
+api.add_resource(PerformerById, '/performers/<int:id>')
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

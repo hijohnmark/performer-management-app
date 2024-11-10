@@ -14,6 +14,7 @@ function PerformerList() {
                             return (
                                 <PerformerCard 
                                 key={performer.id}
+                                id={performer.id}
                                 name={performer.name}
                                 image={performer.image}
                                 bio={performer.bio}

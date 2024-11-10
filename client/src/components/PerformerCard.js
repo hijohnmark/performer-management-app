@@ -1,13 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
+import PerformerCardEditor from './PerformerCardEditor'
 
-function PerformerCard({ name, bio, email, image }) {
+function PerformerCard({ id, name, bio, email, image }) {
+    const [ editMode, setEditMode ] = useState(false)
+
+    const { onDeletePerformer } = useOutletContext()
+
+    const handleDelete = () => {
+        fetch(`/performers/${id}`, {
+            method: "DELETE",
+        })
+        .then((response) => {
+            if (response.ok) {
+                onDeletePerformer(id)
+            }
+        })
+    }
 
     return (
-        <li className='card'>
-            <h4>Name: {name}</h4>
+        editMode ? (
+            <PerformerCardEditor
+                id={id}    
+                name={name}
+                bio={bio}
+                email={email}
+                image={image} 
+            />
+        ) : (
+            <li className='card'>
+            <h3>{name}</h3>
             <br></br>
 
-            <img src={image} />
+            <img src={image} alt={`${name}'s profile picture`}/>
             <br></br>
             <br></br>
 
@@ -19,9 +44,11 @@ function PerformerCard({ name, bio, email, image }) {
             <p>{email}</p>
 
             <div className="button-container">
-                <button>Edit</button><button>Delete</button>
+                <button onClick={() => setEditMode(true)}>Edit</button><button onClick={handleDelete}>Delete</button>
             </div>
         </li>
+        )
+        
     )
 }
 

@@ -18,11 +18,18 @@ def make_performers():
     Performer.query.delete()
 
     performers = []
+    img_urls = [
+        "https://shorturl.at/ReCnj",
+        "https://shorturl.at/eTxmF",
+        "https://shorturl.at/RY8gp",
+        "https://shorturl.at/fNv0c",
+        "https://shorturl.at/3lz0q"
+    ]
 
-    for i in range(10):
+    for i, img_url in enumerate(img_urls):
         performer = Performer(
             name = fake.name(),
-            image = fake.image_url(),
+            image = img_url,
             bio = fake.text(),
             contact_info = fake.email()
         )

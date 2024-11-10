@@ -21,17 +21,19 @@ const [performers, setPerformers] = useState([])
   // ]
 
   useEffect(() => {
-    fetch('http://localhost:5555')
+    fetch('http://localhost:5555/performers')
     .then(r => r.json())
     .then(data => setPerformers(data))
   } , [])
+
+  const onAddPerformer = newPerformer => setPerformers([...performers, newPerformer])
 
   return (
   <>
     <header>
       <NavBar />
     </header>
-    <Outlet context = {{ performers }} />
+    <Outlet context = {{ performers, onAddPerformer }} />
   </>
   )
 }

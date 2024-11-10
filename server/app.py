@@ -13,7 +13,7 @@ from models import Performer
 
 # Views go here!
 
-@app.route('/')
+@app.route('/performers')
 def index():
     performers = [performer.to_dict() for performer in Performer.query.all()]
     return make_response(

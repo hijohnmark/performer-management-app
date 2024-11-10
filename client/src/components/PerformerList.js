@@ -8,7 +8,6 @@ function PerformerList() {
 
     return (
         <>
-            <h1>Featured Performers:</h1>
                 <ul>
                     {
                         performers.map(performer => {

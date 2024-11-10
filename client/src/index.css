@@ -117,7 +117,7 @@ input:focus {
 
 .card {
   margin: 1rem;
-  background-color: rgb(253, 218, 208);
+  background-color: rgb(232, 253, 208);
   color: rgb(0, 0, 0);
   border: 5px solid;
   border-radius: 10px;
@@ -128,11 +128,16 @@ input:focus {
 }
 
 .card img {
-  width: 100%;
+  width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
-.card button {
-  margin-top: 0.5rem;
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
 }
 
 @media (min-width: 768px) {

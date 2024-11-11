@@ -4,14 +4,23 @@ import NavBar from "./components/NavBar";
 
 function App() {
   
-const [performers, setPerformers] = useState([])
-
+const [ performers, setPerformers ] = useState([])
+const [ performerTypes, setPerformerTypes ] = useState([])
 
   useEffect(() => {
     fetch('http://localhost:5555/performers')
     .then(r => r.json())
     .then(data => setPerformers(data))
   } , [])
+
+  useEffect(() => {
+    fetch('http://localhost:5555/performer_types')
+    .then(r => r.json())
+    .then(data => {
+      setPerformerTypes(data)
+      console.log(data)
+    })
+  }, [])
 
   const onAddPerformer = newPerformer => {
     setPerformers([...performers, newPerformer])
@@ -24,15 +33,13 @@ const [performers, setPerformers] = useState([])
   const onEditPerformer = editedPerformer => {
     setPerformers(performers.map(performer => performer.id === editedPerformer.id ? editedPerformer :  performer)
   )}
-  
-  console.log(performers)
 
   return (
   <>
     <header>
       <NavBar />
     </header>
-    <Outlet context = {{ performers, onAddPerformer, onDeletePerformer, onEditPerformer }} />
+    <Outlet context = {{ performers, performerTypes, onAddPerformer, onDeletePerformer, onEditPerformer }} />
   </>
   )
 }

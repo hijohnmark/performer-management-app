@@ -9,7 +9,7 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import Performer
+from models import Performer, PerformerType
 
 # Views go here!
 
@@ -30,6 +30,7 @@ class Performers(Resource):
             image=request.json["image"],
             bio=request.json["bio"],
             email=request.json["email"],
+            performer_type_id=request.json["performer_type_id"],
         )
 
         db.session.add(new_performer)
@@ -78,6 +79,16 @@ class PerformerById(Resource):
 
 api.add_resource(PerformerById, '/performers/<int:id>')
 
+class PerformerTypes(Resource):
+    def get(self):
+        performer_types = [performer_type.to_dict() for performer_type in PerformerType.query.all()]
+
+        return make_response(
+            performer_types,
+            200
+        )
+
+api.add_resource(PerformerTypes, '/performer_types')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

@@ -6,7 +6,7 @@ import * as yup from 'yup'
 function PerformerCardEditor({ id, name, bio, email, image, performerType, setEditMode }) {
     const { onEditPerformer, performerTypes } = useOutletContext()
 
-    const initialTypeId = performerTypes.find(type => type.name === performerType)?.id || ""
+    const initialTypeId = performerTypes.find(type => type.name === performerType).id
 
     const formSchema = yup.object({
         name: yup.string().required("Name is required.").max(25, "Name cannot exceed 25 characters."),

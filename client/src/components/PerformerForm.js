@@ -21,7 +21,7 @@ const PerformerForm = () => {
             image: "",
             bio: "",
             email: "",
-            performer_type_id: "",
+            performer_type_id: performerTypes[0].id 
         },
         validationSchema: formSchema,
         onSubmit: (values, { resetForm }) => {
@@ -137,7 +137,7 @@ const PerformerForm = () => {
 
         <div className="add-delete-performers">
             <br></br>
-            <h1>Edit or delete a performer:</h1>
+            <h1>Manage Performers:</h1>
             <PerformerList />
         </div>
         </>

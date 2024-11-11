@@ -1,11 +1,11 @@
 import React, {useState} from "react"
-import PerformerList from "./PerformerList"
+import EventList from "./EventList"
 import { useFormik } from "formik"
 import * as yup from "yup"
 import { useOutletContext } from "react-router-dom"
 
 const EventForm = () => {
-    const { onAddEvent } = useOutletContext()
+    const { onAddEvent, venues } = useOutletContext()
 
     const formSchema = yup.object().shape({
         name: yup
@@ -24,18 +24,17 @@ const EventForm = () => {
             "Time must be in HH:MM format."
           )
       });
-      
 
     const formik = useFormik({
         initialValues: {
             name: "",
             date: "",
             time: "",
-            venue_id: "",
+            venue_id: venues[0].id
         },
         validationSchema: formSchema,
         onSubmit: (values, { resetForm }) => {
-            fetch("events", {
+            fetch("http://localhost:5555/events", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -53,7 +52,7 @@ const EventForm = () => {
     return (
         <>
         <div className="new-performer-form">
-            <h1>Add a new performer to your lineup:</h1>
+            <h1>Add a new event:</h1>
             <br></br>
             <form 
             onSubmit={formik.handleSubmit} 
@@ -61,13 +60,13 @@ const EventForm = () => {
             >
 
                 <label htmlFor="name">
-                    Performer Name
+                    Event Name
                     <br />
                     <input 
                         id="name"
                         type="text" 
                         name="name" 
-                        placeholder="Add name"
+                        placeholder="Add event name"
                         value={formik.values.name} 
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -77,79 +76,64 @@ const EventForm = () => {
                 </label>
                 <br/>
 
-                <label htmlFor="image">
-                    Profile Picture
+                <label htmlFor="date">
+                    Event Date
                     <input
-                        id="image"
-                        type="text" 
-                        name="image" 
-                        placeholder="Add a profile picture URL"
-                        value={formik.values.image} 
+                        id="date"
+                        type="date" 
+                        name="date" 
+                        placeholder="YYYY-MM-DD"
+                        value={formik.values.date} 
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
+                        style={{ width: "20%" }}
                     />
-                    {formik.touched.image && formik.errors.image && <p style={{ color: 'red' }}>{formik.errors.image}</p>}
+                    {formik.touched.date && formik.errors.date && <p style={{ color: 'red' }}>{formik.errors.date}</p>}
                 </label>
                 <br />
 
-                <label htmlFor="bio">
-                    Bio
-                    <textarea
-                        id="bio"
-                        name="bio"
-                        placeholder="Add performer bio"
-                        value={formik.values.bio}
+                <label htmlFor="time">
+                    Start Time
+                    <input
+                        id="time"
+                        type="time"
+                        name="time"
+                        placeholder="HH:MM"
+                        value={formik.values.time}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        rows="4"
-                        style={{ width: "100%", resize: "none" }}
+                        style={{ width: "10%" }}
                     />
-                    {formik.touched.bio && formik.errors.bio && <p style={{ color: 'red' }}>{formik.errors.bio}</p>}
+                    {formik.touched.time && formik.errors.time && <p style={{ color: 'red' }}>{formik.errors.time}</p>}
                 </label>
                 <br />
 
-                <label htmlFor="performer_type_id">
-                    Performer Type
+                <label htmlFor="venue_id">
+                    Venue
                     <br />
                     <select
-                        name="performer_type_id"
-                        value={formik.values.performer_type_id}
+                        name="venue_id"
+                        value={formik.values.venue_id}
                         onChange={formik.handleChange}
                     >
-                    {performerTypes.map(type => (
-                        <option key={type.id} value={type.id}>
-                            {type.name}
+                    {venues.map(venue => (
+                        <option key={venue.id} value={venue.id}>
+                            {venue.name}
                         </option>
                     ))}
                     </select>
                 </label>
                 <br />
-
-                <label htmlFor="email">
-                    Email
-                    <br />
-                    <input
-                        id="email"
-                        type="text"
-                        name="email"
-                        placeholder="Add email"
-                        value={formik.values.email}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        style={{ width: "50%" }}
-                    />
-                    {formik.touched.email && formik.errors.email && <p style={{ color: 'red' }}>{formik.errors.email}</p>}
-                </label>
                 <br />
-                <button type="submit">Submit New Performer</button>
+                <button type="submit">Create New Event</button>
             </form>
         </div>
 
-        {/* <div className="add-delete-performers">
+        <div className="view-events">
             <br></br>
-            <h1>Edit or delete a performer:</h1>
-            <PerformerList />
-        </div> */}
+            <h1>Scheduled Events:</h1>
+            <EventList />
+        </div>
         </>
     )
 }

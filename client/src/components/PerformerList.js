@@ -6,6 +6,10 @@ function PerformerList() {
     
     const { performers } = useOutletContext()
 
+    if (!performers || performers.length === 0) {
+        return <div>Loading...</div>;
+      }
+
     return (
         <>
                 <ul>

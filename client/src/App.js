@@ -18,10 +18,7 @@ const [ events, setEvents ] = useState([])
   useEffect(() => {
     fetch('http://localhost:5555/performer_types')
     .then(r => r.json())
-    .then(data => {
-      setPerformerTypes(data)
-      console.log(data)
-    })
+    .then(data => setPerformerTypes(data))
   }, [])
 
   useEffect(() => {
@@ -61,7 +58,17 @@ const [ events, setEvents ] = useState([])
     <header>
       <NavBar />
     </header>
-    <Outlet context = {{ performers, performerTypes, onAddPerformer, onDeletePerformer, onEditPerformer, onAddVenue, onAddEvent }} />
+    <Outlet context = {{ 
+      performers, 
+      performerTypes,
+      events,
+      venues, 
+      onAddPerformer, 
+      onDeletePerformer, 
+      onEditPerformer, 
+      onAddVenue, 
+      onAddEvent 
+      }} />
   </>
   )
 }

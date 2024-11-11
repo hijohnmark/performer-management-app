@@ -18,7 +18,6 @@ class Performer(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     type = db.relationship('PerformerType', back_populates='performers')
-    # type_name = association_proxy('type', 'name')
     
     def __repr__(self):
         return f'<Performer {self.id}: {self.name}, Bio: {self.bio}, Contact: {self.email}, Image URL: {self.image}>'
@@ -30,9 +29,12 @@ class PerformerType(db.Model, SerializerMixin):
     name = db.Column(db.String)
     
     performers = db.relationship('Performer', back_populates='type')
+    
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+
+    serialize_rules = ('-performers',)
 
     def __repr__(self):
         return f'<Performer type {self.id}: {self.name}>'
@@ -67,6 +69,8 @@ class Venue(db.Model, SerializerMixin):
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+
+    serialize_rules = ('-events',)
 
     def __repr__(self):
         return f'<Venue {self.id}: {self.name}, Address: {self.address}, Capacity: {self.capacity}>'

@@ -93,7 +93,7 @@ def make_events():
         for i in range(5):
             event = Event(
                 name = ' '.join(fake.words(6)),
-                date = datetime.strptime(fake.date(), '%Y-%m-%d').date(),
+                date = datetime.strptime(fake.date_between(start_date="today", end_date="+731d").strftime('%Y-%m-%d'), '%Y-%m-%d').date(),                
                 time = datetime.strptime(fake.time()[:5], '%H:%M').time(),
                 venue_id = rc(venues).id
             )

@@ -5,11 +5,12 @@
 # Remote library imports
 from flask import request, jsonify, make_response
 from flask_restful import Resource
+from datetime import datetime
 
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import Performer, PerformerType
+from models import Performer, PerformerType, Event, Venue
 
 # Views go here!
 
@@ -20,7 +21,7 @@ class Performers(Resource):
         performers = [performer.to_dict() for performer in Performer.query.all()]
         
         return make_response(
-            jsonify(performers),
+            performers,
             200
         )
     
@@ -89,6 +90,72 @@ class PerformerTypes(Resource):
         )
 
 api.add_resource(PerformerTypes, '/performer_types')
+
+
+class Events(Resource):
+    def get(self):
+        events = [event.to_dict() for event in Event.query.all()]
+
+        return make_response(
+            events,
+            200
+        )
+    
+    def post(self):
+
+        date_str = request.json["date"]
+        time_str = request.json["time"]
+
+        date = datetime.strptime(date_str, "%Y-%m-%d").date() if date_str else None
+        time = datetime.strptime(time_str, "%H:%M").time() if time_str else None
+
+        new_event = Event(
+            name=request.json["name"],
+            date=date,
+            time=time,
+            venue_id=request.json["venue_id"],
+        )
+
+        db.session.add(new_event)
+        db.session.commit()
+
+        response_dict = new_event.to_dict()
+
+        return make_response(
+            response_dict,
+            201
+        )
+    
+api.add_resource(Events, "/events")
+
+class Venues(Resource):
+    
+    def get(self):
+        venues = [venue.to_dict() for venue in Venue.query.all()]
+
+        return make_response(
+            venues,
+            200
+        )
+    
+    def post(self):
+        new_venue = Venue(
+            name=request.json["name"],
+            address=request.json["address"],
+            capacity=request.json["capacity"],
+        )
+
+        db.session.add(new_venue)
+        db.session.commit()
+
+        response_dict = new_venue.to_dict()
+
+        return make_response(
+            response_dict,
+            201
+        )
+
+api.add_resource(Venues, "/venues")
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

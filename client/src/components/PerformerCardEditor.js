@@ -60,7 +60,7 @@ function PerformerCardEditor({ id, name, bio, email, image, performerType, setEd
                 <br />
 
                 <label>
-                    <img src={formik.values.image}></img>
+                    <img src={formik.values.image} alt={formik.values.name}></img>
                     <br /><br />
                     Profile Picture URL:
                     <input

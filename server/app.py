@@ -10,7 +10,7 @@ from datetime import datetime
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import Performer, PerformerType, Event, Venue
+from models import Performer, PerformerType, Event, Venue, performer_event
 
 # Views go here!
 
@@ -117,7 +117,23 @@ class Events(Resource):
         )
 
         db.session.add(new_event)
+        db.session.flush()
+        
+        print(new_event)
+        performer_events = []
+        performer_ids = request.json["performer_ids"]
+
+        for id in performer_ids:
+            performer_events.append({
+                'performer_id': id,
+                'event_id': new_event.id
+            })
+        
+        print(performer_events)
+        
+        db.session.execute(performer_event.insert(), performer_events)
         db.session.commit()
+        
 
         response_dict = new_event.to_dict()
 

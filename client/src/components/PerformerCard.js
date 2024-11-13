@@ -34,7 +34,7 @@ function PerformerCard({ id, name, bio, email, image, performerType, events }) {
             <h3>{name}</h3>
             <br />
 
-            <img src={image} alt={`${name}'s profile picture`}/>
+            <img src={image} alt={name}/>
             <br /><br />
 
             <h3>Bio:</h3>

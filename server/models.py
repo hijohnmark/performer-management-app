@@ -2,28 +2,15 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from config import db, metadata
 
-# Models go here!
-
 performer_event = db.Table(
     'performers_events',
     metadata,
     db.Column('performer_id', db.Integer, db.ForeignKey(
         'performers.id'), primary_key=True),
     db.Column('event_id', db.Integer, db.ForeignKey(
-        'events.id'), primary_key=True)
+        'events.id'), primary_key=True),
+    db.Column('host', db.Boolean, default=False)
 )
-
-
-# class PerformerEvent(db.Model, SerializerMixin):
-#     __tablename__ = 'performers_events'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     performer_id = db.Column(db.Integer, db.ForeignKey('performers.id'))
-#     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
-#     host = db.Column(db.Boolean, default=False)
-
-#     performer = db.relationship('Performer', back_populates='performer_events')
-#     event = db.relationship('Event', back_populates='performer_events')
 
 
 class Performer(db.Model, SerializerMixin):
@@ -43,16 +30,6 @@ class Performer(db.Model, SerializerMixin):
     events = db.relationship('Event', secondary=performer_event, back_populates='performers')
     serialize_rules = ('-events.performers',)
 
-    # performer_events = db.relationship('PerformerEvent', back_populates='performer')
-
-    # events = association_proxy(
-    #     'performer_events',
-    #     'event',
-    #     creator=lambda event_obj: PerformerEvent(event=event_obj)
-    # )
-
-    # serialize_rules = ('-performer_events', )
-
     def __repr__(self):
         return f'<Performer {self.id}: {self.name}, Bio: {self.bio}, Contact: {self.email}, Image URL: {self.image}>'
 
@@ -70,6 +47,7 @@ class PerformerType(db.Model, SerializerMixin):
 
     serialize_rules = ('-performers',)
 
+
 class Event(db.Model, SerializerMixin):
     __tablename__ = 'events'
 
@@ -86,15 +64,6 @@ class Event(db.Model, SerializerMixin):
     
     performers = db.relationship('Performer', secondary=performer_event, back_populates='events')
     serialize_rules = ('-performers.events',)
-    # performer_events = db.relationship('PerformerEvent', back_populates='event')
-
-    # performers = association_proxy(
-    #     'performer_events',
-    #     'performer',
-    #     creator=lambda performer_obj: PerformerEvent(performer=performer_obj)
-    # )
-
-    # serialize_rules = ('-performer_events',)
 
     def __repr__(self):
         venue_name = self.venue.name if self.venue else "Unknown Venue"

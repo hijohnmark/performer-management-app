@@ -117,36 +117,10 @@ def make_performer_events():
         selected_performers = sample(performers, num_performers)
 
         for performer in selected_performers:
-            performer_events.append({'performer_id': performer.id, 'event_id': event.id})
+            performer_events.append({'performer_id': performer.id, 'event_id': event.id, 'host':fake.boolean()})
     
     db.session.execute(performer_event.insert(), performer_events)
     db.session.commit()
-    
-    # PerformerEvent.query.delete()
-
-    # performers = Performer.query.all()
-    # events = Event.query.all()
-
-    # performer_events = []
-
-    # for event in events:
-    #     num_performers = randint(1, len(performers))
-    #     selected_performers = sample(performers, num_performers)
-
-    #     for performer in selected_performers:
-
-    #         is_host = fake.boolean()
-
-    #         performer_event = PerformerEvent(
-    #             performer_id=performer.id,
-    #             event_id=event.id,
-    #             host=is_host
-    #         )
-
-    #         performer_events.append(performer_event)
-    
-    # db.session.add_all(performer_events)
-    # db.session.commit()
 
 
 if __name__ == '__main__':

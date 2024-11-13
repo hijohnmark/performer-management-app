@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import EventList from "./EventList"
 import { useFormik } from "formik"
 import * as yup from "yup"
@@ -19,10 +19,6 @@ const EventForm = () => {
         time: yup
           .string()
           .required("Must enter a time.")
-          .matches(
-            /^([0-9]{2}):([0-9]{2})$/, 
-            "Time must be in HH:MM format."
-          )
       });
 
     const formik = useFormik({
@@ -31,6 +27,7 @@ const EventForm = () => {
             date: "",
             time: "",
             venue_id: venues[0].id,
+            performer_ids: [],
         },
         validationSchema: formSchema,
         onSubmit: (values, { resetForm }) => {
@@ -125,15 +122,30 @@ const EventForm = () => {
                     </select>
                 </label>
                 <br />
+
+                <label>
+                Scheduled Performers:
+                {performers.map((performer) => (
+                    <label key={performer.id}>
+                        <input
+                            type="checkbox"
+                            id={performer.id}
+                            name="performer_ids"
+                            value={performer.id}
+                            onChange={formik.handleChange}
+                        />
+                        <span style={{ marginLeft: "20px" }}>{performer.name}</span>
+                    </label>
+                ))}
+                </label>
+
                 <button type="submit">Create New Event</button>
             </form>
         </div>
 
-        <div className="view-events">
-            <br></br>
-            <h1>Scheduled Events:</h1>
+
             <EventList />
-        </div>
+        
         </>
     )
 }

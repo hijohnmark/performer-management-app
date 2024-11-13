@@ -1,11 +1,11 @@
-import React, {useState} from "react"
+import React from "react"
 import VenueList from "./VenueList"
 import { useFormik } from "formik"
 import * as yup from "yup"
 import { useOutletContext } from "react-router-dom"
 
 const EventForm = () => {
-    const { onAddVenue, venues } = useOutletContext()
+    const { onAddVenue } = useOutletContext()
 
     const formSchema = yup.object().shape({
         name: yup

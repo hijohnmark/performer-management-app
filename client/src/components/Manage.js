@@ -22,6 +22,7 @@ const Manage = () => {
                     </select>
                 </label>
                 <br></br>
+                
             {selectedOption === "performers" && <PerformerForm />}
             {selectedOption === "events" && <EventForm />}
             {selectedOption === "venues" && <VenueForm />}

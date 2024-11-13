@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import PerformerCardEditor from './PerformerCardEditor'
 
-function PerformerCard({ id, name, bio, email, image, performerType }) {
+function PerformerCard({ id, name, bio, email, image, performerType, events }) {
     const [ editMode, setEditMode ] = useState(false)
 
     const { onDeletePerformer } = useOutletContext()
@@ -47,9 +47,23 @@ function PerformerCard({ id, name, bio, email, image, performerType }) {
 
             <h3>Email:</h3>
             <p>{email}</p>
+            <br />
+
+            <h3>Scheduled Events:</h3>
+            <br />
+            <ul>
+            {events.map(event => 
+                <li key={event.id}>
+                    <strong>{event.name.replace(/\b\w/g, (char) => char.toUpperCase())}</strong>
+                    <br />
+                    <span>Date: {event.date}</span>
+                    <br /><br />
+                </li>
+            )}
+            </ul>
 
             <div className="button-container">
-                <button onClick={() => setEditMode(true)}>Edit</button><button onClick={handleDelete}>Delete</button>
+                <button onClick={() => setEditMode(true)}>Edit Info</button><button onClick={handleDelete}>Delete</button>
             </div>
         </li>
         )

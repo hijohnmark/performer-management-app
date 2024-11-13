@@ -1,6 +1,7 @@
 import App from "./App";
-import PerformerList from "./components/PerformerList";
+import LandingPage from "./components/LandingPage";
 import Manage from "./components/Manage";
+import EventList from "./components/EventList";
 
 const routes = [
     {
@@ -9,11 +10,15 @@ const routes = [
         children: [
             {
                 path: '/',
-                element: <PerformerList />
+                element: <LandingPage />
             },
             {
                 path: '/manage',
                 element: <Manage />
+            },
+            {
+                path:'/events',
+                element: <EventList />
             }
         ]
     }

@@ -4,11 +4,12 @@ import { useOutletContext } from "react-router-dom";
 const EventList = () => {
 
     const { events } = useOutletContext()
-
+    const sortedEvents = events.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+    
     return(
         <ul>
             {
-                events.map(event => {
+                sortedEvents.map(event => {
                     return (
                         <EventCard 
                             key={event.id}
@@ -16,6 +17,7 @@ const EventList = () => {
                             date={event.date}
                             time={event.time}
                             venue={event.venue.name}
+                            performers={event.performers}
                         />
                     )
                 })

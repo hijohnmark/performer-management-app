@@ -5,7 +5,7 @@ import * as yup from "yup"
 import { useOutletContext } from "react-router-dom"
 
 const EventForm = () => {
-    const { onAddEvent, venues } = useOutletContext()
+    const { onAddEvent, venues, performers } = useOutletContext()
 
     const formSchema = yup.object().shape({
         name: yup
@@ -30,10 +30,11 @@ const EventForm = () => {
             name: "",
             date: "",
             time: "",
-            venue_id: venues[0].id
+            venue_id: venues[0].id,
         },
         validationSchema: formSchema,
         onSubmit: (values, { resetForm }) => {
+
             fetch("http://localhost:5555/events", {
                 method: "POST",
                 headers: {
@@ -123,7 +124,6 @@ const EventForm = () => {
                     ))}
                     </select>
                 </label>
-                <br />
                 <br />
                 <button type="submit">Create New Event</button>
             </form>

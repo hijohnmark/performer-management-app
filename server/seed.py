@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Standard library imports
-from random import randint, choice as rc
+from random import sample, randint, choice as rc
 from datetime import datetime
 
 # Remote library imports
@@ -9,7 +9,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import Performer, PerformerType, Event, Venue
+from models import Performer, PerformerType, Event, Venue, performer_event
 from config import db
 
 fake = Faker()
@@ -90,7 +90,7 @@ def make_events():
     venues = Venue.query.all()
 
     if venues:
-        for i in range(5):
+        for i in range(6):
             event = Event(
                 name = ' '.join(fake.words(6)),
                 date = datetime.strptime(fake.date_between(start_date="today", end_date="+731d").strftime('%Y-%m-%d'), '%Y-%m-%d').date(),                
@@ -104,11 +104,55 @@ def make_events():
     db.session.add_all(events)
     db.session.commit()
 
+def make_performer_events():
+    db.session.execute(performer_event.delete())
+
+    performers = Performer.query.all()
+    events = Event.query.all()
+
+    performer_events = []
+
+    for event in events:
+        num_performers = randint(1, len(performers))
+        selected_performers = sample(performers, num_performers)
+
+        for performer in selected_performers:
+            performer_events.append({'performer_id': performer.id, 'event_id': event.id})
+    
+    db.session.execute(performer_event.insert(), performer_events)
+    db.session.commit()
+    
+    # PerformerEvent.query.delete()
+
+    # performers = Performer.query.all()
+    # events = Event.query.all()
+
+    # performer_events = []
+
+    # for event in events:
+    #     num_performers = randint(1, len(performers))
+    #     selected_performers = sample(performers, num_performers)
+
+    #     for performer in selected_performers:
+
+    #         is_host = fake.boolean()
+
+    #         performer_event = PerformerEvent(
+    #             performer_id=performer.id,
+    #             event_id=event.id,
+    #             host=is_host
+    #         )
+
+    #         performer_events.append(performer_event)
+    
+    # db.session.add_all(performer_events)
+    # db.session.commit()
+
+
 if __name__ == '__main__':
     with app.app_context():
         make_performer_types()
         make_performers()
         make_venues()
         make_events()
-
-
+        make_performer_events()

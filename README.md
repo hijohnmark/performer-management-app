@@ -130,26 +130,26 @@ Allows users to choose what they want to manage (performers, events, or venues) 
    cd <repo-directory>
    ```
 
-2. Set up a virtual environment:
+2. Install dependencies:
    ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pipenv install
    ```
 
-3. Install dependencies:
+3. Set up a virtual environment:
    ```bash
-   pip install -r requirements.txt
+   pipenv shell
    ```
 
 4. Run the Flask application:
    ```bash
+   cd server
    python app.py
    ```
 
 ### Frontend (React)
-1. Navigate to the frontend directory:
+1. Navigate to the frontend directory from the root directory:
    ```bash
-   cd frontend
+   cd client
    ```
 
 2. Install dependencies:

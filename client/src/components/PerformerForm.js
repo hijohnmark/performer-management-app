@@ -3,6 +3,7 @@ import PerformerList from "./PerformerList"
 import { useFormik } from "formik"
 import * as yup from "yup"
 import { useOutletContext } from "react-router-dom"
+import PerformerTypeForm from "./PerformerTypeForm"
 
 const PerformerForm = () => {
 
@@ -113,8 +114,6 @@ const PerformerForm = () => {
                     ))}
                     </select>
                 </label>
-                <br />
-
                 <label htmlFor="email">
                     Email
                     <br />
@@ -133,6 +132,10 @@ const PerformerForm = () => {
                 <br />
                 <button type="submit">Submit New Performer</button>
             </form>
+        </div>
+
+        <div>
+        <PerformerTypeForm />
         </div>
 
         <div className="add-delete-performers">

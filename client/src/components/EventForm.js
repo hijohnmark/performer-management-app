@@ -139,6 +139,7 @@ const EventForm = () => {
                     </label>
                 ))}
                 </label>
+                <br />
 
                 <label htmlFor="host">
                     Choose Event Host:
@@ -154,6 +155,7 @@ const EventForm = () => {
                         ))}
                     </select>
                 </label>
+                <br />
 
                 <button type="submit">Create New Event</button>
             </form>

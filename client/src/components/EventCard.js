@@ -1,6 +1,6 @@
 import React from "react"
 
-const EventCard = ({ name, date, time, venue, performers }) => {
+const EventCard = ({ name, date, time, venue, performers, hosts }) => {
 
   
 
@@ -24,6 +24,12 @@ const EventCard = ({ name, date, time, venue, performers }) => {
             <h3>Scheduled Performers:</h3>
             <ul>
                 {performers.map(performer => <li key={performer.id}>{performer.name}</li>)}
+            </ul>
+            <br />
+
+            <h3>Hosting:</h3>
+            <ul>
+                {hosts.map(host => <li key={host.id}>{host.name}</li>)}
             </ul>
 
         </li>

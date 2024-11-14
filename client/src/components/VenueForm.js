@@ -4,7 +4,7 @@ import { useFormik } from "formik"
 import * as yup from "yup"
 import { useOutletContext } from "react-router-dom"
 
-const EventForm = () => {
+const VenueForm = () => {
     const { onAddVenue } = useOutletContext()
 
     const formSchema = yup.object().shape({
@@ -120,4 +120,4 @@ const EventForm = () => {
     )
 }
 
-export default EventForm
+export default VenueForm

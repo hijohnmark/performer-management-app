@@ -45,6 +45,10 @@ const [ events, setEvents ] = useState([])
     setEvents([...events, newEvent])
   }
 
+  const onAddPerformerType = newType => {
+    setPerformerTypes([...performerTypes, newType])
+  }
+
   const onDeletePerformer = deletedPerformerId => {
     setPerformers(performers.filter(performer => performer.id !== deletedPerformerId))
   }
@@ -67,7 +71,8 @@ const [ events, setEvents ] = useState([])
       onDeletePerformer, 
       onEditPerformer, 
       onAddVenue, 
-      onAddEvent 
+      onAddEvent,
+      onAddPerformerType 
       }} />
   </>
   )

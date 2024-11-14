@@ -18,6 +18,7 @@ const EventList = () => {
                             time={event.time}
                             venue={event.venue.name}
                             performers={event.performers}
+                            hosts={event.hosts}
                         />
                     )
                 })

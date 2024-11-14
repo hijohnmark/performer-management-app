@@ -38,11 +38,11 @@ def make_performers():
     performers = []
     performer_types = PerformerType.query.all()
     img_urls = [
-        "https://shorturl.at/ReCnj",
-        "https://shorturl.at/eTxmF",
-        "https://shorturl.at/RY8gp",
-        "https://shorturl.at/fNv0c",
-        "https://shorturl.at/3lz0q"
+        "https://scontent.fdad5-1.fna.fbcdn.net/v/t39.30808-6/464187936_984906036983506_8033087804017152469_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=gokRPONIMXsQ7kNvgGCu5ce&_nc_zt=23&_nc_ht=scontent.fdad5-1.fna&_nc_gid=A85opqK3fKiBka9n_k0bxqa&oh=00_AYDfCFnZEAobJaroIz0TcDUC6OBoYyNKmXxaD7lWFFR9RQ&oe=673B8939",
+        "https://scontent.fdad5-1.fna.fbcdn.net/v/t39.30808-6/464203217_984906900316753_3606753934579104904_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nAI2MR48DVAQ7kNvgGaHOI2&_nc_zt=23&_nc_ht=scontent.fdad5-1.fna&_nc_gid=AaUWigwrpuEMphsKQ_9W0P_&oh=00_AYBCcxi9cv5tUpa9sJMjYWluKGPQKwrxI3BDhvlAV9ApuA&oe=673B89FE",
+        "https://scontent.fdad5-1.fna.fbcdn.net/v/t39.30808-6/463749775_983224437151666_8292857059205273849_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xIV3XXL8xnkQ7kNvgEiru3H&_nc_zt=23&_nc_ht=scontent.fdad5-1.fna&_nc_gid=AQyXIGZG81nGAUf0M7ngJIu&oh=00_AYCQ9zXPV3y_0pvJX1HmmsvN5hJ2q656PMl54RJ9HFHLrA&oe=673B7F95",
+        "https://scontent.fdad5-1.fna.fbcdn.net/v/t39.30808-6/464415045_987655613375215_244135096885973262_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ciL5VxFj8LwQ7kNvgGjuyeu&_nc_zt=23&_nc_ht=scontent.fdad5-1.fna&_nc_gid=AOPK1MNSPf39ts6riEzLhWL&oh=00_AYCMzdnBicJkgCWqu4F5JmqrwTTCUU2PGhMi1NrnpIDYtg&oe=673B8722",
+        "https://scontent.fdad5-1.fna.fbcdn.net/v/t39.30808-6/459844365_959321792875264_603798176134569687_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Ji2-bDUzegYQ7kNvgEHF2ya&_nc_zt=23&_nc_ht=scontent.fdad5-1.fna&_nc_gid=AEiFRT4LEMoZymaOf7TeeEE&oh=00_AYCy9gRvaE9HGP1tM3F_NU08Cu60SJxIt2kWzT7y4eE-Qw&oe=673B8AD5"
     ]
 
     for i, img_url in enumerate(img_urls):

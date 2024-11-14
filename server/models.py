@@ -63,7 +63,16 @@ class Event(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
     
     performers = db.relationship('Performer', secondary=performer_event, back_populates='events')
-    serialize_rules = ('-performers.events',)
+    hosts = db.relationship(
+        'Performer',
+        secondary=performer_event,
+        primaryjoin=(performer_event.c.event_id == id),
+        secondaryjoin=(performer_event.c.performer_id == Performer.id) & (performer_event.c.host == True),
+        viewonly=True
+    )
+
+
+    serialize_rules = ('-performers.events', '-hosts.events',)
 
     def __repr__(self):
         venue_name = self.venue.name if self.venue else "Unknown Venue"

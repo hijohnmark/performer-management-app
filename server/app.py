@@ -88,6 +88,22 @@ class PerformerTypes(Resource):
             performer_types,
             200
         )
+    
+    def post(self):
+        new_type = PerformerType(
+            name=request.json['name'],
+        )
+
+        db.session.add(new_type)
+        db.session.commit()
+
+        response_dict = new_type.to_dict()
+
+        return make_response(
+            response_dict,
+            201
+        )
+        
 
 api.add_resource(PerformerTypes, '/performer_types')
 
@@ -124,11 +140,7 @@ class Events(Resource):
         host = request.json["host"]
 
         def is_host(id):
-            if id == host:
-                return 1
-            else:
-                return 0
-
+            return 1 if id == host else 0
 
         for id in performer_ids:
             performer_events.append({
@@ -180,6 +192,7 @@ class Venues(Resource):
         )
 
 api.add_resource(Venues, "/venues")
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

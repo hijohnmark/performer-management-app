@@ -114,6 +114,8 @@ const PerformerForm = () => {
                     ))}
                     </select>
                 </label>
+                <br />
+                
                 <label htmlFor="email">
                     Email
                     <br />

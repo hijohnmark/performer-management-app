@@ -20,7 +20,6 @@ const Manage = () => {
                         <option value="performers">Performers</option>
                         <option value="events">Events</option>
                         <option value="venues">Venues</option>
-                        <option value="performer-types">Performer Types</option>
                     </select>
                 </label>
                 <br></br>
@@ -28,7 +27,6 @@ const Manage = () => {
             {selectedOption === "performers" && <PerformerForm />}
             {selectedOption === "events" && <EventForm />}
             {selectedOption === "venues" && <VenueForm />}
-            {selectedOption === "performer-types" && <PerformerTypeForm />}
         </div>
     )
 }

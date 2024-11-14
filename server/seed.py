@@ -116,8 +116,14 @@ def make_performer_events():
         num_performers = randint(1, len(performers))
         selected_performers = sample(performers, num_performers)
 
+        host_performer = rc(selected_performers)
+
         for performer in selected_performers:
-            performer_events.append({'performer_id': performer.id, 'event_id': event.id, 'host':fake.boolean()})
+            performer_events.append({
+                'performer_id': performer.id,
+                'event_id': event.id,
+                'host': performer == host_performer
+            })
     
     db.session.execute(performer_event.insert(), performer_events)
     db.session.commit()

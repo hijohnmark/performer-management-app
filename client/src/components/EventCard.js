@@ -27,7 +27,7 @@ const EventCard = ({ name, date, time, venue, performers, hosts }) => {
             </ul>
             <br />
 
-            <h3>Hosting:</h3>
+            <h3>Host:</h3>
             <ul>
                 {hosts.map(host => <li key={host.id}>{host.name}</li>)}
             </ul>

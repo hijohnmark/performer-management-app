@@ -28,6 +28,7 @@ const EventForm = () => {
             time: "",
             venue_id: venues[0].id,
             performer_ids: [],
+            host: performers[0].id,
         },
         validationSchema: formSchema,
         onSubmit: (values, { resetForm }) => {
@@ -137,6 +138,21 @@ const EventForm = () => {
                         <span style={{ marginLeft: "20px" }}>{performer.name}</span>
                     </label>
                 ))}
+                </label>
+
+                <label htmlFor="host">
+                    Choose Event Host:
+                    <br />
+                    <select
+                        name="host"
+                        value={formik.values.host}
+                        onChange={formik.handleChange}>
+                        {performers.map(performer => (
+                            <option key={performer.id} value={performer.id}>
+                                {performer.name}
+                            </option>
+                        ))}
+                    </select>
                 </label>
 
                 <button type="submit">Create New Event</button>

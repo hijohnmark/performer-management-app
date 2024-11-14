@@ -119,14 +119,22 @@ class Events(Resource):
         db.session.add(new_event)
         db.session.flush()
         
-        print(new_event)
         performer_events = []
         performer_ids = request.json["performer_ids"]
+        host = request.json["host"]
+
+        def is_host(id):
+            if id == host:
+                return 1
+            else:
+                return 0
+
 
         for id in performer_ids:
             performer_events.append({
                 'performer_id': id,
-                'event_id': new_event.id
+                'event_id': new_event.id,
+                'host': is_host(id)
             })
         
         print(performer_events)

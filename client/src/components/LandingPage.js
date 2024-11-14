@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
-import PerformerCard from "./PerformerCard";
+import FeaturedPerformerCard from "./FeaturedPerformerCard";
 
 const LandingPage = () => {
     const { performers } = useOutletContext();
@@ -29,7 +29,7 @@ const LandingPage = () => {
         <br />
 
         <h3>Featured Performer:</h3>
-        <PerformerCard 
+        <FeaturedPerformerCard 
         name={rp.name}
         bio={rp.bio}
         email={rp.email}

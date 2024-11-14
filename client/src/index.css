@@ -148,6 +148,28 @@ textarea:focus {
     border-radius: 10px;
 }
 
+.feature-card {
+  margin: 1rem;
+  align-items: center;
+  background-color: rgb(238, 255, 201);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  vertical-align: top;
+  width: 500px;
+  height: auto;
+}
+
+.feature-card img {
+  width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
 .button-container {
   display: flex;
   justify-content: space-between;

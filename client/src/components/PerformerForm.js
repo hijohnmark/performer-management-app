@@ -115,7 +115,7 @@ const PerformerForm = () => {
                     </select>
                 </label>
                 <br />
-                
+
                 <label htmlFor="email">
                     Email
                     <br />
@@ -132,7 +132,7 @@ const PerformerForm = () => {
                     {formik.touched.email && formik.errors.email && <p style={{ color: 'red' }}>{formik.errors.email}</p>}
                 </label>
                 <br />
-                <button type="submit">Submit New Performer</button>
+                <button type="submit">Add New Performer</button>
             </form>
         </div>
 

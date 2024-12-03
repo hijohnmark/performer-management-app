@@ -22,10 +22,16 @@ const LandingPage = () => {
         <h1>Welcome to Performer MGMT!</h1>
         <br /><br />
 
-        <p>To view a list of upcoming events, click Events.</p>
+        <p>Performer MGMT allows community leaders, drag parents, venue owners, event organizers, and more to manage 
+            their roster of performers, venues, and events. Keep track of upcoming events, bookings, and 
+            find venues and events near you for easy planning.
+        </p>
         <br />
 
-        <p>To manage performers, events, and venues, click Manage.</p>
+        <p>Use the navigation links above to manage performers, events, and venues.</p>
+        <br />
+
+        <p>To see events and venues near you, click "Near Me".</p>
         <br />
 
         <h3>Featured Performer:</h3>

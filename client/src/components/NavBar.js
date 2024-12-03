@@ -11,16 +11,28 @@ function NavBar() {
                 Home
             </NavLink>
             <NavLink
+            to='/performers'
+            className='nav-link'
+            >
+                Manage Performers
+            </NavLink>
+            <NavLink
             to='/events'
             className='nav-link'
             >
-                Events
+                Manage Events
             </NavLink>
             <NavLink
-            to='/manage'
+            to='/venues'
             className='nav-link'
             >
-                Manage
+                Manage Venues
+            </NavLink>
+            <NavLink
+            to='/nearby'
+            className='nav-link'
+            >
+                Near Me
             </NavLink>
         </nav>
     )

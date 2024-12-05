@@ -1,10 +1,10 @@
-import React from "react";
-import { useOutletContext } from "react-router-dom"
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext"
 import PerformerCard from './PerformerCard'
 
 function PerformerList() {
     
-    const { performers } = useOutletContext()
+    const { performers } = useContext(AppContext)
 
     return (
         <>

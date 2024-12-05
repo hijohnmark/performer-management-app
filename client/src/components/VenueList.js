@@ -1,9 +1,10 @@
+import React, { useContext } from "react";
 import VenueCard from "./VenueCard";
-import { useOutletContext } from "react-router-dom";
+import { AppContext } from "../context/AppContext"
 
-const EventList = () => {
+const VenueList = () => {
 
-    const { venues } = useOutletContext()
+    const { venues } = useContext(AppContext)
 
     return(
         <ul>
@@ -23,4 +24,4 @@ const EventList = () => {
     )
 }
 
-export default EventList;
+export default VenueList;

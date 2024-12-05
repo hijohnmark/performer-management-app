@@ -1,10 +1,10 @@
-import React from 'react'
-import { useOutletContext } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { AppContext } from "../context/AppContext"
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
 function PerformerCardEditor({ id, name, bio, email, image, performerType, setEditMode }) {
-    const { onEditPerformer, performerTypes } = useOutletContext()
+    const { onEditPerformer, performerTypes } = useContext(AppContext)
 
     const initialTypeId = performerTypes.find(type => type.name === performerType).id
 

@@ -1,13 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 import PerformerList from "./PerformerList"
 import { useFormik } from "formik"
 import * as yup from "yup"
-import { useOutletContext } from "react-router-dom"
+import { AppContext } from "../context/AppContext"
 import PerformerTypeForm from "./PerformerTypeForm"
 
 const PerformerForm = () => {
 
-    const { onAddPerformer, performerTypes } = useOutletContext()
+    const { onAddPerformer, performerTypes } = useContext(AppContext)
 
     const formSchema = yup.object().shape({
         name: yup.string().required("Must enter a name.").max(50, "Name must not exceed 50 characters."),
@@ -22,7 +22,7 @@ const PerformerForm = () => {
             image: "",
             bio: "",
             email: "",
-            performer_type_id: performerTypes[0].id 
+            performer_type_id: performerTypes.length > 0 ? performerTypes[0].id : "", 
         },
         validationSchema: formSchema,
         onSubmit: (values, { resetForm }) => {

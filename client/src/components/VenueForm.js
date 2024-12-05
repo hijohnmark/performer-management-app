@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useContext, useEffect, useRef } from "react"
 import VenueList from "./VenueList"
 import { useFormik } from "formik"
 import * as yup from "yup"
-import { useOutletContext } from "react-router-dom"
+import { AppContext } from "../context/AppContext"
 
 const VenueForm = () => {
-    const { onAddVenue } = useOutletContext()
+    const { onAddVenue } = useContext(AppContext)
+    const addressInputRef = useRef(null)
 
     const formSchema = yup.object().shape({
         name: yup
@@ -46,6 +47,21 @@ const VenueForm = () => {
         }
     })
 
+    useEffect(() => {
+        if (addressInputRef.current) {
+            const autocomplete = new window.google.maps.places.Autocomplete(addressInputRef.current, {
+                types: ["geocode"],
+            });
+
+            autocomplete.addListener("place_changed", () => {
+                const place = autocomplete.getPlace();
+                if (place && place.formatted_address) {
+                    formik.setFieldValue("address", place.formatted_address);
+                }
+            });
+        }
+    }, []);
+
     return (
         <>
         <div className="new-performer-form">
@@ -73,14 +89,15 @@ const VenueForm = () => {
                 </label>
                 <br/>
 
-                <label htmlFor="date">
+                <label htmlFor="address">
                     Venue Address
                     <input
                         id="address"
                         type="text" 
                         name="address" 
                         placeholder="Add venue address"
-                        value={formik.values.date} 
+                        ref={addressInputRef}
+                        value={formik.values.address} 
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         style={{ width: "100%" }}
@@ -89,7 +106,7 @@ const VenueForm = () => {
                 </label>
                 <br />
 
-                <label htmlFor="time">
+                <label htmlFor="capacity">
                     Venue Capacity
                     <br />
                     <input
@@ -97,7 +114,7 @@ const VenueForm = () => {
                         type="text"
                         name="capacity"
                         placeholder="Enter a number"
-                        value={formik.values.time}
+                        value={formik.values.capacity}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         style={{ width: "20%" }}

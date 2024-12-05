@@ -1,11 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import EventList from "./EventList"
 import { useFormik } from "formik"
 import * as yup from "yup"
-import { useOutletContext } from "react-router-dom"
+import { AppContext } from "../context/AppContext";
 
 const EventForm = () => {
-    const { onAddEvent, venues, performers } = useOutletContext()
+    const { onAddEvent, venues, performers } = useContext(AppContext)
 
     const formSchema = yup.object().shape({
         name: yup
@@ -26,7 +26,7 @@ const EventForm = () => {
             name: "",
             date: "",
             time: "",
-            venue_id: venues[0].id,
+            venue_id: venues.length > 0 ? venues[0].id : "",
             performer_ids: [],
             host: "",
         },

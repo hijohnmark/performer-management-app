@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { useOutletContext } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
+import { AppContext } from "../context/AppContext"
 import PerformerCardEditor from './PerformerCardEditor'
 
 function PerformerCard({ id, name, bio, email, image, performerType, events }) {
     const [ editMode, setEditMode ] = useState(false)
 
-    const { onDeletePerformer } = useOutletContext()
+    const { onDeletePerformer } = useContext(AppContext)
 
     const handleDelete = () => {
         fetch(`/performers/${id}`, {

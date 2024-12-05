@@ -1,9 +1,9 @@
-import { useOutletContext } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { AppContext } from "../context/AppContext"
+import React, { useState, useEffect, useContext } from "react";
 import FeaturedPerformerCard from "./FeaturedPerformerCard";
 
 const LandingPage = () => {
-    const { performers } = useOutletContext();
+    const { performers } = useContext(AppContext);
     const [rp, setRp] = useState(null);
 
     useEffect(() => {

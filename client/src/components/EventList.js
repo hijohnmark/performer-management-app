@@ -1,9 +1,10 @@
 import EventCard from "./EventCard";
-import { useOutletContext } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
+import React, { useContext } from "react";
 
 const EventList = () => {
 
-    const { events } = useOutletContext()
+    const { events } = useContext(AppContext)
     const sortedEvents = events.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
     
     return(

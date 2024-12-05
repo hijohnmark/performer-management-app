@@ -1,11 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import VenueList from "./VenueList"
 import { useFormik } from "formik"
 import * as yup from "yup"
-import { useOutletContext } from "react-router-dom"
+import { AppContext } from "../context/AppContext"
 
 const PerformerTypeForm = () => {
-    const { onAddPerformerType, performerTypes } = useOutletContext()
+    const { onAddPerformerType, performerTypes } = useContext(AppContext)
 
     const formSchema = yup.object().shape({
         name: yup

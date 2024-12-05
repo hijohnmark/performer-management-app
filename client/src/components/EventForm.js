@@ -55,7 +55,7 @@ const EventForm = () => {
             <br></br>
             <form 
             onSubmit={formik.handleSubmit} 
-            className="form"
+            className="event-form"
             >
 
                 <label htmlFor="name">

@@ -1,9 +1,9 @@
 import App from "./App";
 import LandingPage from "./components/LandingPage";
-import Manage from "./components/Manage";
 import EventForm from "./components/EventForm";
 import PerformerForm from "./components/PerformerForm";
 import VenueForm from "./components/VenueForm";
+import About from "./components/About";
 
 const routes = [
     {
@@ -27,8 +27,8 @@ const routes = [
                 element: <VenueForm />
             },
             {
-                path: '/nearby',
-                element: <Manage />
+                path: '/about',
+                element: <About />
             }
         ]
     }

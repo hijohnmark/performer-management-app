@@ -5,7 +5,7 @@ const EventCard = ({ name, date, time, venue, performers, hosts }) => {
   
 
     return (
-        <li className='card'>
+        <li className='event-card'>
             <h3>{name.replace(/\b\w/g, (char) => char.toUpperCase())}</h3>
             <br />
 

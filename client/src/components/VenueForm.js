@@ -69,7 +69,7 @@ const VenueForm = () => {
             <br></br>
             <form 
             onSubmit={formik.handleSubmit} 
-            className="form"
+            className="venue-form"
             >
 
                 <label htmlFor="name">

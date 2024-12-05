@@ -31,9 +31,6 @@ const LandingPage = () => {
         <p>Use the navigation links above to manage performers, events, and venues.</p>
         <br />
 
-        <p>To see events and venues near you, click "Near Me".</p>
-        <br />
-
         <h3>Featured Performer:</h3>
         <FeaturedPerformerCard 
         name={rp.name}

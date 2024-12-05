@@ -148,6 +148,45 @@ textarea:focus {
     border-radius: 10px;
 }
 
+.event-card {
+  margin: 1rem;
+  background-color: rgb(170, 253, 183);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 15px;
+  padding: 20px;
+  display: inline-block;
+  vertical-align: top;
+  width: 300px;
+}
+
+.event-card img {
+  width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.venue-card {
+  margin: 1rem;
+  background-color: rgb(125, 226, 235);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 15px;
+  padding: 20px;
+  display: inline-block;
+  vertical-align: top;
+  width: 300px;
+}
+
+.venue-card img {
+  width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
 .feature-card {
   margin: 1rem;
   align-items: center;
@@ -182,6 +221,20 @@ textarea:focus {
 
 .form {
   background: rgb(255, 201, 218);
+  padding: 20px;
+  border-radius: 15px;
+  margin: 30px;
+}
+
+.event-form {
+  background: rgb(170, 253, 183);
+  padding: 20px;
+  border-radius: 15px;
+  margin: 30px;
+}
+
+.venue-form {
+  background: rgb(125, 226, 235);
   padding: 20px;
   border-radius: 15px;
   margin: 30px;

@@ -29,10 +29,10 @@ function NavBar() {
                 Manage Venues
             </NavLink>
             <NavLink
-            to='/nearby'
+            to='/about'
             className='nav-link'
             >
-                Near Me
+                About
             </NavLink>
         </nav>
     )

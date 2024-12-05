@@ -7,7 +7,7 @@ const VenueCard = ({ name, address, capacity }) => {
     }
 
     return (
-        <li className='card'>
+        <li className='venue-card'>
             <h3>{toTitleCase(name)}</h3>
             <br />
 

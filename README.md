@@ -14,11 +14,11 @@ This is a web application built with Flask and React to manage performers, event
 - **Association Tables**: Use an intermediary table (`performers_events`) to manage many-to-many relationships between performers and events, with the additional feature of assigning a "host" status to one performer per event.
 
 ### Frontend (React)
-- **Manage Section**: Users can manage performers, events, and venues using dropdowns to select what they want to manage.
-  - **Performer Form**: Add, view, update, and delete performers. Add new performer types as well.
-  - **Event Form**: Add new events, assign performers to events, and set one performer as the event host.
-  - **Venue Form**: Add and view venue details. Select a venue when creating a new event.
-- **Navigation**: A simple navigation bar allows users to view events, manage entities, and go back to the homepage.
+- **Managed Assets**: Users can manage performers, events, and venues by navigating to the form that corresponds with what they want to manage.
+  - **Manage Performers**: Add, view, update, and delete performers. Add new performer types as well.
+  - **Manage Events**: Add new events, assign performers to events, and set one performer as the event host.
+  - **Manage Venues**: Add and view venue details. Select a venue when creating a new event.
+- **Navigation**: A simple navigation bar allows users to view a featured performer, manage entities, learn more about the team behind Performer MGMT.
 
 ## Models
 

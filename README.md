@@ -1,4 +1,4 @@
-# README for Performer Management System
+# Performer MGMT App
 
 ## Overview
 
